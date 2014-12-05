@@ -1,2 +1,5 @@
 bin/*
 lib/*.so
+*~
+c_query
+apple_mdns/
