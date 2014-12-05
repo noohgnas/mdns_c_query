@@ -1,12 +1,8 @@
 #include <errno.h>
-#include <unistd.h>
-#include <netdb.h>
 #include <signal.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <sys/types.h>
-#include <sys/socket.h>
 
 // Configuration defines for the apple DNS libraries.
 #include "apple_mdns_config.h"
