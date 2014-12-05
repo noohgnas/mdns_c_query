@@ -13,6 +13,25 @@ providing bar"
 The packets are all dns packets, so the standard is a nice thin layer of
 multicast things, and some standardization of service type formats, etc.
 
+## Usage
+
+To build this project as it is, you should be able to pull it with git and just
+do
+
+```
+make all
+```
+
+This will grab the source code from the apple website and build the whole thing,
+then build the project as you'd expect. This will be slow for incremental
+builds, so there's also a `quick` target in the Makefile.
+
+```
+make quick
+```
+
+You'll need to have made all at least once before you can use this, though.
+
 
 ## Bonjour
 

@@ -11,7 +11,9 @@ all: get deps clean c_query
 
 build: c_query
 
-c_query: lib_dns_sd main.o dns_common.o
+c_query: lib_dns_sd quick
+
+quick: main.o dns_common.o
 	gcc $(build_flags) bin/main.o -o c_query
 
 main.o: src/main.c 
