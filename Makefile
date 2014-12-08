@@ -6,8 +6,12 @@ LIBS = -L./lib -ldns_sd
 endif
 
 build_flags = -g -Wall -pedantic -std=gnu99 $(include_dir) $(LIBS)
+# There's a bunch of harmless warns in the apple MDNS code, but it muddys the
+# build terminal, so I'm turning them off =3
+dep_build_flags = -Wno-unused-but-set-variable -Wno-unused-value -Wno-unused-function -Wno-array-bounds -Wno-unused-label
 
-all: get_deps clean c_query
+# all: get_deps clean c_query
+all: clean c_query
 
 build: c_query
 
@@ -28,7 +32,6 @@ clean:
 # 
 #  Get dependancies from the apple open souce server, and build them 
 #
-
 get_deps:
 	wget http://opensource.apple.com/tarballs/mDNSResponder/mDNSResponder-320.10.80.tar.gz -O mDNSResponder.tar.gz
 	tar -xvzf mDNSResponder.tar.gz mDNSResponder-320.10.80/
@@ -37,5 +40,5 @@ get_deps:
 
 build_deps: 
 	cd apple_mdns/mDNSPosix && $(MAKE) os=linux clean
-	cd apple_mdns/mDNSPosix && $(MAKE) os=linux all
+	cd apple_mdns/mDNSPosix && $(MAKE) os=linux all CC="@cc $(dep_build_flags)"
 	cp apple_mdns/mDNSPosix/build/prod/libdns_sd.so lib/
